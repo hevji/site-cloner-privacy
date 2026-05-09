@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Site Cloner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #080809;
+      --surface: #0f0f12;
+      --border: #1a1a20;
+      --accent: #00ff88;
+      --accent-dim: rgba(0,255,136,0.08);
+      --text: #d8d8e0;
+      --muted: #4a4a58;
+      --faint: #1e1e26;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      min-height: 100vh;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,255,136,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 32px 120px;
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 64px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(0,255,136,0.2);
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .subtitle {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .subtitle strong {
+      color: rgba(0,255,136,0.5);
+      font-weight: 400;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 60%);
+      margin: 48px 0;
+      opacity: 0.3;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .section:nth-child(1) { animation-delay: 0.1s; }
+    .section:nth-child(2) { animation-delay: 0.15s; }
+    .section:nth-child(3) { animation-delay: 0.2s; }
+    .section:nth-child(4) { animation-delay: 0.25s; }
+    .section:nth-child(5) { animation-delay: 0.3s; }
+
+    .section-num {
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      opacity: 0.6;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+
+    /* Highlight box */
+    .highlight {
+      background: var(--accent-dim);
+      border: 1px solid rgba(0,255,136,0.15);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .highlight p {
+      margin: 0;
+      color: var(--text);
+      opacity: 1;
+    }
+
+    .highlight strong { color: var(--accent); font-weight: 600; }
+
+    /* List */
+    ul {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    ul li {
+      font-size: 13px;
+      color: var(--text);
+      opacity: 0.85;
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+
+    ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      opacity: 0.6;
+      font-size: 11px;
+    }
+
+    /* Contact block */
+    .contact-block {
+      background: var(--faint);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 16px;
+    }
+
+    .contact-block p { margin: 0; }
+
+    .contact-block a {
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .contact-block a:hover { opacity: 1; }
+
+    /* Footer */
+    .footer {
+      margin-top: 80px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-brand {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .footer-brand span { color: var(--accent); }
+
+    .footer-date {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="header">
+      <div class="badge">Chrome Extension</div>
+      <h1>Privacy <span>Policy</span></h1>
+      <p class="subtitle">
+        For <strong>Site Cloner</strong> &nbsp;·&nbsp; by hevji
+        &nbsp;·&nbsp; Last updated: <strong>May 9, 2025</strong>
+      </p>
+    </div>
+
+    <div class="highlight">
+      <p><strong>Short version:</strong> Site Cloner does not collect, store, transmit, or share any data about you or your browsing. Everything happens locally on your device.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section">
+      <div class="section-num">01 —</div>
+      <h2>What Site Cloner Does</h2>
+      <p>Site Cloner is a Chrome extension that allows you to download the source files of any webpage you are currently viewing — including HTML, CSS, JavaScript, images, and fonts — packaged as a local zip file.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-num">02 —</div>
+      <h2>Data We Collect</h2>
+      <p>We collect <strong>nothing</strong>. Site Cloner does not collect, log, store, or transmit any personal data, browsing history, or information about the pages you visit.</p>
+      <ul>
+        <li>No analytics or telemetry</li>
+        <li>No crash reporting</li>
+        <li>No usage statistics</li>
+        <li>No account or sign-in required</li>
+        <li>No cookies or tracking of any kind</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-num">03 —</div>
+      <h2>How It Works</h2>
+      <p>When you click Clone, the extension injects a script into the active tab to collect resource URLs from the page. Those resources are then fetched and assembled into a zip file entirely within your browser. The resulting zip is saved directly to your device via the browser's download mechanism.</p>
+      <p>No data ever leaves your device to our servers — because we have no servers.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-num">04 —</div>
+      <h2>Permissions Explained</h2>
+      <p>Site Cloner requests the following Chrome permissions:</p>
+      <ul>
+        <li><strong>activeTab</strong> — to access the page you're currently viewing when you click the extension</li>
+        <li><strong>scripting</strong> — to inject a resource-collection script into the active tab</li>
+        <li><strong>downloads</strong> — to save the generated zip file to your device</li>
+        <li><strong>host_permissions (&lt;all_urls&gt;)</strong> — to fetch resources from any domain the page loads assets from</li>
+      </ul>
+      <p>These permissions are used solely to perform the cloning operation you initiate. They are never used to monitor, record, or transmit your activity.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-num">05 —</div>
+      <h2>Third-Party Services</h2>
+      <p>Site Cloner does not integrate with any third-party services, APIs, or analytics platforms. The only external code bundled with the extension is <strong>JSZip</strong> (an open-source zip library), which runs entirely in your browser.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-num">06 —</div>
+      <h2>Changes to This Policy</h2>
+      <p>If this privacy policy is updated, the new version will be posted at this URL with a revised date at the top. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-num">07 —</div>
+      <h2>Contact</h2>
+      <p>Questions or concerns about this privacy policy?</p>
+      <div class="contact-block">
+        <p>Reach out via GitHub: <a href="https://github.com/hevji" target="_blank">github.com/hevji</a></p>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="footer-brand">SITE <span>CLONER</span></div>
+      <div class="footer-date">© 2025 hevji · hevji.github.io/site-cloner-privacy</div>
+    </div>
+
+  </div>
+</body>
+</html>
