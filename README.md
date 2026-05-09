@@ -1,2 +1,1 @@
-# website-cloner-extension
-website-cloner-extension
+# Privacy Policy
